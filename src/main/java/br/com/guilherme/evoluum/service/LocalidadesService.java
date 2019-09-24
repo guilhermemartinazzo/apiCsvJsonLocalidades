@@ -22,7 +22,7 @@ public class LocalidadesService {
 	private static final String HOST = "servicodados.ibge.gov.br";
 	private static final String PATH_MUNICIPIOS = "api/v1/localidades/municipios";
 	private static final String PATH_UFS = "api/v1/localidades/estados";
-	private static final String HTTPS = "https";
+	private static final String HTTPS = "https"; 
 	
 	public List<Municipio> getAllMunicipiosFromIBGE(){
 		RestTemplate template = getRestTemplate();
