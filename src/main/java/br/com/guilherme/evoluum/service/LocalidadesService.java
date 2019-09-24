@@ -33,7 +33,6 @@ public class LocalidadesService {
 	
 	public String getAllMunicipiosFromIBGEJson(int tipoExibicao){
 		RestTemplate template = getRestTemplate();
-		
 		String uriMunicipios = getUriByParametersSchemeHostPath(HTTPS, HOST, PATH_MUNICIPIOS);
 		ResponseEntity<String> response = template.exchange(uriMunicipios, HttpMethod.GET, null, new ParameterizedTypeReference<String>(){});
 		String dadosParaExibicao = obterDadosParaExibicao(response.getBody(),tipoExibicao);
