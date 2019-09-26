@@ -15,7 +15,7 @@ import br.com.localidades.dominio.Municipio;
 import br.com.localidades.service.LocalidadesService;
 
 @Controller
-public class EvoluumController {
+public class LocalidadesController {
 
 	@GetMapping("/")
 	public String index() {
