@@ -1,4 +1,4 @@
-package br.com.guilherme.evoluum.controllers;
+package br.com.localidades.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import br.com.evoluum.dominio.Municipio;
-import br.com.guilherme.evoluum.service.LocalidadesService;
+import br.com.localidades.dominio.Municipio;
+import br.com.localidades.service.LocalidadesService;
 
 @Controller
 public class EvoluumController {

@@ -1,4 +1,4 @@
-package br.com.guilherme.evoluum.teste;
+package br.com.localidades.teste;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.evoluum.dominio.Municipio;
-import br.com.evoluum.dominio.UF;
+import br.com.localidades.dominio.Municipio;
+import br.com.localidades.dominio.UF;
 
 public class LocalidadesTest {
 
