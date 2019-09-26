@@ -49,15 +49,6 @@ public class LocalidadesService {
 		return response.getBody();
 	}
 	
-	public String getAllUFsFromIBGEJson(){
-		RestTemplate template = getRestTemplate();
-		String uriUFs = getUriByParametersSchemeHostPath(HTTPS, HOST, PATH_UFS);
-		ResponseEntity<String> response = template.exchange(uriUFs, HttpMethod.GET, null, new ParameterizedTypeReference<String>(){});
-		String dadosUfJson = response.getBody();
-		String dadosParaExibicao = obterDadosParaExibicao(dadosUfJson,TIPO_EXIBICAO_JSON);
-		return dadosParaExibicao;
-	}
-	
 	//tipoExibicao 1 = CSV, tipoExibicao 2 = Json
 	private String obterDadosParaExibicao(String json, int tipoExibicao){
 		StringBuilder sb = new StringBuilder("");
