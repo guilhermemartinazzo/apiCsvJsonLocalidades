@@ -2,6 +2,7 @@ package br.com.localidades.teste;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -13,18 +14,18 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.localidades.dominio.Municipio;
 import br.com.localidades.dominio.UF;
+import br.com.localidades.service.LocalidadesService;
 
 public class LocalidadesTest {
 
+	
+	
 	@Test
 	public void test() {
-		RestTemplate template = new RestTemplate();
-		template.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
-		UriComponents uri = UriComponentsBuilder.newInstance().scheme("https").host("servicodados.ibge.gov.br")
-				.path("api/v1/localidades/municipios").build();
-		ResponseEntity<List<Municipio>> response = template.exchange(uri.toUriString(), HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<Municipio>>() {
-				});
+		LocalidadesService service = new LocalidadesService();
+		List<Municipio> lstMunicipios = service.getAllMunicipiosFromIBGE();
+		Assert.assertNotNull(lstMunicipios);
+		Assert.assertFalse(lstMunicipios.isEmpty());
 	}
 	@Test
 	public void test2() {

@@ -17,8 +17,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.localidades.dominio.Municipio;
 import br.com.localidades.dominio.UF;
 
+
 @Component
 public class LocalidadesService {
+	public static final int TIPO_EXIBICAO_JSON = 2;
+	public static final int TIPO_EXIBICAO_CSV = 1;
 	private static final String HOST = "servicodados.ibge.gov.br";
 	private static final String PATH_MUNICIPIOS = "api/v1/localidades/municipios";
 	private static final String PATH_UFS = "api/v1/localidades/estados";
@@ -31,7 +34,7 @@ public class LocalidadesService {
 		return response.getBody();
 	}
 	
-	public String getAllMunicipiosFromIBGEJson(int tipoExibicao){
+	public String getAllMunicipiosFromIBGE(int tipoExibicao){
 		RestTemplate template = getRestTemplate();
 		String uriMunicipios = getUriByParametersSchemeHostPath(HTTPS, HOST, PATH_MUNICIPIOS);
 		ResponseEntity<String> response = template.exchange(uriMunicipios, HttpMethod.GET, null, new ParameterizedTypeReference<String>(){});
@@ -50,15 +53,15 @@ public class LocalidadesService {
 		RestTemplate template = getRestTemplate();
 		String uriUFs = getUriByParametersSchemeHostPath(HTTPS, HOST, PATH_UFS);
 		ResponseEntity<String> response = template.exchange(uriUFs, HttpMethod.GET, null, new ParameterizedTypeReference<String>(){});
-		String ttttt = response.getBody();
-		String dadosParaExibicao = obterDadosParaExibicao(ttttt,2);
+		String dadosUfJson = response.getBody();
+		String dadosParaExibicao = obterDadosParaExibicao(dadosUfJson,TIPO_EXIBICAO_JSON);
 		return dadosParaExibicao;
 	}
 	
 	//tipoExibicao 1 = CSV, tipoExibicao 2 = Json
 	private String obterDadosParaExibicao(String json, int tipoExibicao){
 		StringBuilder sb = new StringBuilder("");
-		if(tipoExibicao == 1){
+		if(tipoExibicao == TIPO_EXIBICAO_CSV){
 			sb.append("idEstado,siglaEstado,regiaoNome,nomeCidade,nomeMesorregiao,nomeFormatado");
 		}
 		JSONArray jsonArrayRetorno = new JSONArray();		
@@ -89,7 +92,7 @@ public class LocalidadesService {
 			}catch(Exception e){
 				System.out.println(e.getMessage());
 			}
-		return tipoExibicao == 1 ? sb.toString() : jsonArrayRetorno.toString();
+		return tipoExibicao == TIPO_EXIBICAO_CSV ? sb.toString() : jsonArrayRetorno.toString();
 	}
 
 	private void appendTipoExibicaoJson(Number idEstado, String siglaEstado, String regiaoNome,

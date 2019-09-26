@@ -33,19 +33,19 @@ public class EvoluumController {
 
 	@GetMapping("/localidadesJson")
 	public void getAllLocalidadesJson(HttpServletResponse response) throws Exception {
-		response.getWriter().write(localidadesService.getAllMunicipiosFromIBGEJson(2));
+		response.getWriter().write(localidadesService.getAllMunicipiosFromIBGE(LocalidadesService.TIPO_EXIBICAO_JSON));
 	}
 	
 	@GetMapping("/localidadesCsv")
 	public void getAllLocalidadesJsonCsv(HttpServletResponse response) throws Exception {
-		response.getWriter().write(localidadesService.getAllMunicipiosFromIBGEJson(1));
+		response.getWriter().write(localidadesService.getAllMunicipiosFromIBGE(LocalidadesService.TIPO_EXIBICAO_CSV));
 	}
 
 	@GetMapping("/municipios/download/dadosCsv")
 	public void downloadDadosCsv(HttpServletResponse response) throws Exception {
 		 response.setContentType("text/csv");
 	     response.setHeader("Content-Disposition", "attachment; file=dados.csv");
-		 String listaFormatada = localidadesService.getAllMunicipiosFromIBGEJson(1);
+		 String listaFormatada = localidadesService.getAllMunicipiosFromIBGE(LocalidadesService.TIPO_EXIBICAO_CSV);
 		 response.getWriter().write(listaFormatada);
 	}
 	
@@ -53,7 +53,7 @@ public class EvoluumController {
 	public void downloadDadosJson(HttpServletResponse response) throws Exception {
 		response.setContentType("application/json");
 		response.setHeader("Content-Disposition", "attachment; file=dados.json");
-		String listaFormatada = localidadesService.getAllMunicipiosFromIBGEJson(2);
+		String listaFormatada = localidadesService.getAllMunicipiosFromIBGE(LocalidadesService.TIPO_EXIBICAO_JSON);
 		response.getWriter().write(listaFormatada);
 	}
 	
