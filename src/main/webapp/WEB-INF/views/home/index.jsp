@@ -17,13 +17,13 @@
 
 <div>
 	<h3>Endpoint para consultar id de cidade passando o nome como parametro:</h3>
-	<h4>Ex: localhost:8080/API/municipios/findIdByName/Florianópolis</h4>
+	<h4>Ex: localhost:8080/municipios/findIdByName/Florianópolis</h4>
 	<br/>
 	<h3>Endpoint que retorna um json com todos os dados:</h3>
-	<h4>Ex: localhost:8080/API/localidadesJson</h4>
+	<h4>Ex: localhost:8080/localidadesJson</h4>
 	<br/>
 	<h3>Endpoint que retorna um csv com todos os dados:</h3>
-	<h4>Ex: localhost:8080/API/localidadesCsv</h4>
+	<h4>Ex: localhost:8080/localidadesCsv</h4>
 	<br/>
 </div>
 </body>
